@@ -2,27 +2,38 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import Logo from "../assets/icons/logo.svg";
-import Moon from "../assets/icons/icon-moon.svg";
+import MoonLight from "../assets/icons/icon-moon.svg";
+import MoonDark from "../assets/icons/icon-moon-dark.svg";
 import { inter, lora, inconsolata } from "../app/fonts";
 
 const Nav = () => {
-  const [isFontFamilySelectorActive, setIsFontFamilySelectorActive] =
+  const [isFontFamilyDropdownActive, setIsFontFamilyDropdownActive] =
     useState(false);
 
   const [fontFamily, setFontFamily] = useState("inter");
 
+  const [theme, setTheme] = useState("light");
+
   const handleDropdown = (e: MouseEvent) => {
     e.preventDefault();
-    setIsFontFamilySelectorActive(!isFontFamilySelectorActive);
+    setIsFontFamilyDropdownActive(!isFontFamilyDropdownActive);
   };
 
   const handleFontFamilySelector = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
+    setIsFontFamilyDropdownActive(false);
     setFontFamily(e.currentTarget.value);
   };
+
+  const handleThemeToggle = (e: ChangeEvent<HTMLInputElement>) => {
+    e.target.checked ? setTheme("dark") : setTheme("light");
+  };
+
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+  }, [theme]);
 
   return (
     <nav className="nav">
@@ -36,7 +47,7 @@ const Nav = () => {
 
           <ul
             className={`nav__font-dropdown-options ${
-              isFontFamilySelectorActive
+              isFontFamilyDropdownActive
                 ? "nav__font-dropdown-options--open"
                 : ""
             }`}
@@ -71,8 +82,11 @@ const Nav = () => {
           </ul>
         </div>
         <div className="nav__theme-toggler">
-          <input type="checkbox" />
-          <Image src={Moon} alt="theme toggler" />
+          <input type="checkbox" onChange={handleThemeToggle} />
+          <Image
+            src={theme === "light" ? MoonLight : MoonDark}
+            alt="theme toggler"
+          />
         </div>
       </div>
     </nav>

@@ -16,6 +16,25 @@
   --blood-orange: #ff5252;
 }
 
+body[data-theme="dark"] {
+  background: var(--black);
+
+  p,
+  li,
+  span,
+  button {
+    color: var(--white);
+  }
+
+  .nav {
+    &__theme-toggler {
+      input::after {
+        background: var(--purple);
+      }
+    }
+  }
+}
+
 .container {
   padding: 24px;
 }
