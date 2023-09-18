@@ -16,13 +16,20 @@
   --blood-orange: #ff5252;
 }
 
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
 body[data-theme="dark"] {
   background: var(--black);
 
   p,
   li,
   span,
-  button {
+  button,
+  input {
     color: var(--white);
   }
 
@@ -40,10 +47,18 @@ body[data-theme="dark"] {
       }
     }
   }
+
+  .search {
+    input {
+      background: var(--super-dark-grey);
+    }
+  }
 }
 
 .container {
   padding: 24px;
+  max-width: 816px;
+  margin: 0 auto;
 }
 
 a {
@@ -54,4 +69,14 @@ button {
   padding: 0;
   border: none;
   background: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media (min-width: $md) {
+  .container {
+    padding: 60px 40px 40px 40px;
+  }
 }

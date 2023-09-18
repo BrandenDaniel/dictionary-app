@@ -2,24 +2,31 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  FocusEvent,
+  MouseEvent,
+  useEffect,
+  useState,
+} from "react";
 import Logo from "../assets/icons/logo.svg";
 import MoonLight from "../assets/icons/icon-moon-light.svg";
 import MoonDark from "../assets/icons/icon-moon-dark.svg";
 import { inter, lora, inconsolata } from "../app/fonts";
+import { useFontFamilyContext } from "@/contexts/font-family-context";
+import { fontFamilyCondition } from "./Search";
 
 const Nav = () => {
   const [isFontFamilyDropdownActive, setIsFontFamilyDropdownActive] =
     useState(false);
 
-  const [fontFamily, setFontFamily] = useState("inter");
+  const { fontFamily, setFontFamily } = useFontFamilyContext();
 
   const [theme, setTheme] = useState("light");
 
-  const handleDropdown = (e: MouseEvent) => {
-    e.preventDefault();
-    setIsFontFamilyDropdownActive(!isFontFamilyDropdownActive);
-  };
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const handleFontFamilySelector = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -31,10 +38,6 @@ const Nav = () => {
     e.target.checked ? setTheme("dark") : setTheme("light");
   };
 
-  useEffect(() => {
-    document.body.setAttribute("data-theme", theme);
-  }, [theme]);
-
   return (
     <nav className="nav">
       <Link href="/">
@@ -43,7 +46,21 @@ const Nav = () => {
 
       <div>
         <div className="nav__font-dropdown">
-          <button onClick={handleDropdown}>Sans Serif</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setIsFontFamilyDropdownActive(!isFontFamilyDropdownActive);
+            }}
+            className={fontFamilyCondition(fontFamily)}
+          >
+            {fontFamily === "inter"
+              ? "Sans Serif"
+              : fontFamily === "lora"
+              ? "Serif"
+              : fontFamily === "inconsolata"
+              ? "Mono"
+              : ""}
+          </button>
 
           <ul
             className={`nav__font-dropdown-options ${
