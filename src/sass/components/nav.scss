@@ -26,13 +26,14 @@
       align-items: center;
       gap: 16px;
       font-size: 14px;
+      font-weight: 700;
 
       &::after {
         content: "";
         display: block;
         width: 12px;
         height: 6px;
-        background-image: url("../assets/icons/icon-arrow-down.svg");
+        background-image: url("../../assets/icons/icon-arrow-down.svg");
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;

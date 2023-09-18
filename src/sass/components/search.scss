@@ -1,0 +1,26 @@
+.search {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  position: relative;
+
+  input {
+    flex: 1;
+    border: none;
+    background: var(--off-white);
+    border-radius: 16px;
+    height: 48px;
+    padding: 0 0 0 16px;
+    font-weight: 700;
+  }
+
+  button {
+    position: absolute;
+    right: 16px;
+
+    img {
+      height: 16px;
+      width: 16px;
+    }
+  }
+}

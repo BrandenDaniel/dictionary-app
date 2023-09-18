@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import Logo from "../assets/icons/logo.svg";
-import MoonLight from "../assets/icons/icon-moon.svg";
+import MoonLight from "../assets/icons/icon-moon-light.svg";
 import MoonDark from "../assets/icons/icon-moon-dark.svg";
 import { inter, lora, inconsolata } from "../app/fonts";
 

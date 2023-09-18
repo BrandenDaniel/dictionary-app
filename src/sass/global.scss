@@ -27,6 +27,13 @@ body[data-theme="dark"] {
   }
 
   .nav {
+    &__font-dropdown {
+      &-options {
+        box-shadow: 0px 0 20px 0 rgba(164, 69, 237, 0.7);
+        background: var(--super-dark-grey);
+      }
+    }
+
     &__theme-toggler {
       input::after {
         background: var(--purple);

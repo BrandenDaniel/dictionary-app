@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import "../sass/main.scss";
-import Nav from "@/components/Nav";
 import { inter } from "./fonts";
+import Nav from "@/components/Nav";
+import "../sass/main.scss";
 
 export const metadata: Metadata = {
   title: "Dictionary App",
