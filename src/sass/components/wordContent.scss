@@ -1,0 +1,103 @@
+.word {
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__item {
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      > div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        h1 {
+          font-size: 32px;
+        }
+
+        span {
+          font-size: 18px;
+          color: var(--purple);
+          line-height: 1.33;
+        }
+      }
+
+      &-audio {
+        button {
+          width: 48px;
+          height: 48px;
+          background-image: url("../../assets/icons/icon-play.svg");
+          background-size: contain;
+          background-position: center;
+          z-index: 1;
+          border-radius: 50%;
+
+          &:hover {
+            background-image: url("../../assets/icons/icon-play-hover.svg");
+          }
+        }
+
+        audio {
+          display: none;
+        }
+      }
+    }
+
+    &-meanings {
+      h2 {
+        font-size: 18px;
+        font-style: italic;
+        color: var(--dark-grey);
+        margin: 40px 0;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-weight: 700;
+
+        &::after {
+          content: "";
+          height: 1px;
+          background: var(--super-light-grey);
+          flex: 1;
+        }
+      }
+
+      &-definition {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+          color: var(--light-grey);
+        }
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 13px;
+          list-style: none;
+          padding: 0;
+          li {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+            display: flex;
+            gap: 20px;
+
+            &::before {
+              content: "\2022";
+              font-size: 15px;
+              color: var(--purple);
+              font-weight: bold;
+              display: block;
+              width: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}

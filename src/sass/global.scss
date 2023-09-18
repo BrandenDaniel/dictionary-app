@@ -25,6 +25,8 @@ $xxl: 1400px;
 body[data-theme="dark"] {
   background: var(--black);
 
+  h1,
+  h2,
   p,
   li,
   span,
@@ -51,6 +53,16 @@ body[data-theme="dark"] {
   .search {
     input {
       background: var(--super-dark-grey);
+    }
+  }
+
+  .word {
+    &__item {
+      &-meanings {
+        h2::after {
+          background: var(--grey);
+        }
+      }
     }
   }
 }
