@@ -20,8 +20,7 @@ export function fontFamilyCondition(fontFamily: string) {
 const Search = () => {
   const { fontFamily } = useFontFamilyContext();
 
-  const { setWordContent, searchedWord, setSearchedWord, wordSearch } =
-    useWordContentContext();
+  const { searchedWord, setSearchedWord, wordSearch } = useWordContentContext();
 
   useEffect(() => {
     wordSearch();
