@@ -4,12 +4,19 @@ import { useWordContentContext } from "@/contexts/word-content-context";
 import React, { MouseEvent } from "react";
 
 const WordContent = () => {
-  const { wordContent } = useWordContentContext();
+  const { wordContent, setWordContent, setSearchedWord, wordSearch } =
+    useWordContentContext();
 
   const playAudio = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const button = document.getElementById("word-audio") as HTMLAudioElement;
     button.play();
+  };
+
+  const buttonSearch = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setSearchedWord(e.currentTarget.value);
+    wordSearch();
   };
 
   console.log(wordContent);
@@ -56,6 +63,22 @@ const WordContent = () => {
                       <li>{item.definition}</li>
                     ))}
                   </ul>
+                  {item.synonyms.length > 0 && (
+                    <div>
+                      <h3>Synonyms</h3>
+                      <div>
+                        {item.synonyms.map((item: string) => (
+                          <button
+                            value={item}
+                            key={item}
+                            onClick={buttonSearch}
+                          >
+                            {item}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

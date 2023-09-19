@@ -9,6 +9,9 @@ type WordContentContextProviderProps = {
 type WordContentContext = {
   wordContent: any;
   setWordContent: React.Dispatch<React.SetStateAction<any>>;
+  searchedWord: string;
+  setSearchedWord: React.Dispatch<React.SetStateAction<string>>;
+  wordSearch: () => Promise<void>;
 };
 
 export const WordContentContext = createContext<WordContentContext | null>(
@@ -19,9 +22,26 @@ const WordContentContextProvider = ({
   children,
 }: WordContentContextProviderProps) => {
   const [wordContent, setWordContent] = useState<any>([]);
+  const [searchedWord, setSearchedWord] = useState("dictionary");
+
+  async function wordSearch() {
+    const response = await fetch(
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${searchedWord}`
+    );
+    const content = await response.json();
+    setWordContent(content);
+  }
 
   return (
-    <WordContentContext.Provider value={{ wordContent, setWordContent }}>
+    <WordContentContext.Provider
+      value={{
+        wordContent,
+        setWordContent,
+        searchedWord,
+        setSearchedWord,
+        wordSearch,
+      }}
+    >
       {children}
     </WordContentContext.Provider>
   );

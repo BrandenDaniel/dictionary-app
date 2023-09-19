@@ -20,26 +20,16 @@ export function fontFamilyCondition(fontFamily: string) {
 const Search = () => {
   const { fontFamily } = useFontFamilyContext();
 
-  const [searchedWord, setSearchedWord] = useState("dictionary");
-
-  const { setWordContent } = useWordContentContext();
+  const { setWordContent, searchedWord, setSearchedWord, wordSearch } =
+    useWordContentContext();
 
   useEffect(() => {
     wordSearch();
   }, []);
 
-  async function wordSearch() {
-    const response = await fetch(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${searchedWord}`
-    );
-    const content = await response.json();
-    console.log(content);
-
-    setWordContent(content);
-  }
-
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSearchedWord(searchedWord);
     wordSearch();
   };
 
@@ -47,6 +37,7 @@ const Search = () => {
     <form className="search" onSubmit={handleSearch}>
       <input
         type="text"
+        id="search"
         onChange={(e) => setSearchedWord(e.currentTarget.value)}
         className={fontFamilyCondition(fontFamily)}
         value={searchedWord}
