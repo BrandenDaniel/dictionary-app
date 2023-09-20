@@ -48,13 +48,13 @@
       right: 0;
       top: 42px;
       list-style: none;
-      padding: 24px;
+      padding: 0;
       min-width: 183px;
       box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.1);
       border-radius: 16px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+
       background: var(--white);
       display: none;
       z-index: 10;
@@ -63,11 +63,29 @@
         display: flex;
       }
 
+      li {
+        &:first-child {
+          button {
+            padding-top: 24px;
+          }
+        }
+
+        &:last-child {
+          button {
+            padding-bottom: 24px;
+          }
+        }
+      }
+
       button {
+        padding: 8px 24px;
         font-weight: 700;
         font-size: 14px;
         width: 100%;
         text-align: left;
+        &:hover {
+          color: var(--purple) !important;
+        }
       }
     }
   }

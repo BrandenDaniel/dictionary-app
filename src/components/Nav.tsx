@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState, useRef } from "react";
 import Logo from "../assets/icons/logo.svg";
 import MoonLight from "../assets/icons/icon-moon-light.svg";
 import MoonDark from "../assets/icons/icon-moon-dark.svg";
@@ -17,6 +17,8 @@ const Nav = () => {
 
   const [theme, setTheme] = useState("");
 
+  let DropdownButtonRef = useRef<any>();
+
   useEffect(() => {
     // Check to see if Media-Queries are supported
     if (window.matchMedia) {
@@ -29,6 +31,12 @@ const Nav = () => {
         document.body.setAttribute("data-theme", "light");
       }
     }
+
+    document.addEventListener("mousedown", (e) => {
+      if (!DropdownButtonRef.current.contains(e.target)) {
+        setIsFontFamilyDropdownActive(false);
+      }
+    });
   }, []);
 
   const handleFontFamilySelector = (e: MouseEvent<HTMLButtonElement>) => {
@@ -53,6 +61,7 @@ const Nav = () => {
       <div>
         <div className="nav__font-dropdown">
           <button
+            ref={DropdownButtonRef}
             onClick={(e) => {
               e.preventDefault();
               setIsFontFamilyDropdownActive(!isFontFamilyDropdownActive);
