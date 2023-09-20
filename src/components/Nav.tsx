@@ -1,14 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import {
-  ChangeEvent,
-  FocusEvent,
-  MouseEvent,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import Logo from "../assets/icons/logo.svg";
 import MoonLight from "../assets/icons/icon-moon-light.svg";
 import MoonDark from "../assets/icons/icon-moon-dark.svg";
@@ -22,27 +15,40 @@ const Nav = () => {
 
   const { fontFamily, setFontFamily } = useFontFamilyContext();
 
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("");
 
   useEffect(() => {
-    document.body.setAttribute("data-theme", theme);
-  }, [theme]);
+    // Check to see if Media-Queries are supported
+    if (window.matchMedia) {
+      // Check if the dark-mode Media-Query matches
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        setTheme("dark");
+        document.body.setAttribute("data-theme", "dark");
+      } else {
+        setTheme("light");
+        document.body.setAttribute("data-theme", "light");
+      }
+    }
+  }, []);
 
   const handleFontFamilySelector = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsFontFamilyDropdownActive(false);
     setFontFamily(e.currentTarget.value);
+    localStorage.setItem("fontFamily", e.currentTarget.value);
   };
 
   const handleThemeToggle = (e: ChangeEvent<HTMLInputElement>) => {
-    e.target.checked ? setTheme("dark") : setTheme("light");
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    document.body.setAttribute(
+      "data-theme",
+      theme === "light" ? "dark" : "light"
+    );
   };
 
   return (
     <nav className="nav">
-      <Link href="/">
-        <Image src={Logo} alt="Logo" className="nav__logo" />
-      </Link>
+      <Image src={Logo} alt="Logo" className="nav__logo" />
 
       <div>
         <div className="nav__font-dropdown">
@@ -99,7 +105,11 @@ const Nav = () => {
           </ul>
         </div>
         <div className="nav__theme-toggler">
-          <input type="checkbox" onChange={handleThemeToggle} />
+          <input
+            type="checkbox"
+            onChange={handleThemeToggle}
+            checked={theme === "dark" ? true : false}
+          />
           <Image
             src={theme === "light" ? MoonLight : MoonDark}
             alt="theme toggler"

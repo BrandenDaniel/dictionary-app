@@ -1,8 +1,8 @@
 .word {
-  padding: 24px 0;
+  padding: 24px 0 0 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 60px;
 
   &__item {
     &-header {
@@ -111,8 +111,125 @@
               color: var(--purple);
               font-size: 16px;
               font-weight: 700;
+              text-decoration: underline;
             }
           }
+        }
+      }
+
+      &-example {
+        color: var(--light-grey);
+        &::before {
+          opacity: 0;
+        }
+      }
+    }
+
+    &-source {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--super-light-grey);
+      h3 {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--light-grey);
+        margin-bottom: 8px;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--dark-grey);
+        font-size: 14px;
+
+        &::after {
+          content: "";
+          display: block;
+          width: 14px;
+          height: 14px;
+          background-image: url("../../assets/icons/icon-new-window.svg");
+          background-size: contain;
+          background-position: center;
+        }
+      }
+    }
+  }
+}
+
+.no-definition {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  margin-top: 130px;
+  span {
+    font-size: 64px;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  h2 {
+    color: var(--dark-grey);
+    font-size: 20px;
+  }
+
+  p {
+    line-height: 1.33;
+    color: var(--light-grey);
+  }
+}
+
+@media (min-width: $md) {
+  .word {
+    padding: 50px 0 0 0;
+
+    &__item {
+      &-header {
+        > div {
+          h1 {
+            font-size: 64px;
+          }
+
+          span {
+            font-size: 24px;
+          }
+        }
+      }
+
+      &-meanings {
+        h2 {
+          font-size: 24px;
+        }
+        &-definition {
+          gap: 30px;
+
+          h3,
+          button {
+            font-size: 20px;
+          }
+
+          ul {
+            padding-left: 22px;
+
+            li {
+              font-size: 18px;
+            }
+          }
+
+          > div {
+            gap: 40px;
+          }
+        }
+      }
+
+      &-source {
+        display: flex;
+        gap: 25px;
+        h3 {
+          margin: 0;
         }
       }
     }

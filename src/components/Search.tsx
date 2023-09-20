@@ -20,16 +20,16 @@ export function fontFamilyCondition(fontFamily: string) {
 const Search = () => {
   const { fontFamily } = useFontFamilyContext();
 
-  const { searchedWord, setSearchedWord, wordSearch } = useWordContentContext();
+  const { searchedWord, setSearchedWord, apiCall } = useWordContentContext();
 
   useEffect(() => {
-    wordSearch();
+    apiCall(searchedWord);
   }, []);
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchedWord(searchedWord);
-    wordSearch();
+    apiCall(searchedWord);
   };
 
   return (
