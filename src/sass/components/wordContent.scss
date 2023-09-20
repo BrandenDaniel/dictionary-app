@@ -1,5 +1,5 @@
 .word {
-  padding: 24px 0 0 0;
+  padding-top: 35px;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -50,7 +50,7 @@
         font-size: 18px;
         font-style: italic;
         color: var(--dark-grey);
-        margin: 40px 0;
+        margin: 30px 0;
         display: flex;
         align-items: center;
         gap: 16px;
@@ -105,13 +105,16 @@
           > div {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px 15px;
+            gap: 5px 25px;
 
             button {
-              color: var(--purple);
+              color: var(--purple) !important;
               font-size: 16px;
               font-weight: 700;
-              text-decoration: underline;
+
+              &:hover {
+                text-decoration: underline;
+              }
             }
           }
         }
@@ -126,9 +129,12 @@
     }
 
     &-source {
-      margin-top: 40px;
-      padding-top: 40px;
+      margin-top: 30px;
+      padding-top: 30px;
       border-top: 1px solid var(--super-light-grey);
+      display: flex;
+      flex-direction: column;
+
       h3 {
         font-size: 14px;
         font-weight: 400;
@@ -136,21 +142,26 @@
         margin-bottom: 8px;
       }
 
-      a {
+      > div {
         display: flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--dark-grey);
-        font-size: 14px;
+        flex-direction: column;
+        gap: 5px 20px;
+        a {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--dark-grey);
+          font-size: 14px;
 
-        &::after {
-          content: "";
-          display: block;
-          width: 14px;
-          height: 14px;
-          background-image: url("../../assets/icons/icon-new-window.svg");
-          background-size: contain;
-          background-position: center;
+          &::after {
+            content: "";
+            display: block;
+            width: 14px;
+            height: 14px;
+            background-image: url("../../assets/icons/icon-new-window.svg");
+            background-size: contain;
+            background-position: center;
+          }
         }
       }
     }
@@ -202,6 +213,7 @@
       &-meanings {
         h2 {
           font-size: 24px;
+          margin: 40px 0;
         }
         &-definition {
           gap: 30px;
@@ -226,10 +238,17 @@
       }
 
       &-source {
-        display: flex;
-        gap: 25px;
+        flex-direction: row;
+        gap: 40px;
+        padding-top: 40px;
+        margin-top: 40px;
         h3 {
           margin: 0;
+        }
+
+        > div {
+          flex-direction: row;
+          flex-wrap: wrap;
         }
       }
     }

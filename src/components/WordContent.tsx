@@ -95,6 +95,7 @@ const WordContent = () => {
                                 value={item}
                                 key={item}
                                 onClick={buttonSearch}
+                                className={`${fontFamilyCondition(fontFamily)}`}
                               >
                                 {item}
                               </button>
@@ -108,11 +109,13 @@ const WordContent = () => {
                 {item.sourceUrls && (
                   <div className="word__item-source">
                     <h3>Source</h3>
-                    {item.sourceUrls.map((item: string, index: number) => (
-                      <Link href={item} key={index} target="_blank">
-                        {item}
-                      </Link>
-                    ))}
+                    <div>
+                      {item.sourceUrls.map((item: string, index: number) => (
+                        <Link href={item} key={index} target="_blank">
+                          {item}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

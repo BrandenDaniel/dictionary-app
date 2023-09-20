@@ -33,7 +33,7 @@ body[data-theme="dark"] {
   button,
   input,
   a {
-    color: var(--white);
+    color: var(--white) !important;
   }
 
   .nav {
@@ -54,6 +54,10 @@ body[data-theme="dark"] {
   .search {
     input {
       background: var(--super-dark-grey);
+
+      + span {
+        color: var(--blood-orange) !important;
+      }
     }
   }
 
@@ -66,6 +70,10 @@ body[data-theme="dark"] {
         h2::after {
           background: var(--grey);
         }
+      }
+
+      &-source {
+        border-color: var(--grey);
       }
     }
   }

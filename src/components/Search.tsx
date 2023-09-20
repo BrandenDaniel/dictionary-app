@@ -4,7 +4,7 @@ import Image from "next/image";
 import searchIcon from "../assets/icons/icon-search.svg";
 import { inter, lora, inconsolata } from "../app/fonts";
 import { useFontFamilyContext } from "@/contexts/font-family-context";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, ChangeEvent } from "react";
 import { useWordContentContext } from "@/contexts/word-content-context";
 
 export function fontFamilyCondition(fontFamily: string) {
@@ -29,7 +29,15 @@ const Search = () => {
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchedWord(searchedWord);
-    apiCall(searchedWord);
+    searchedWord.length > 0 && apiCall(searchedWord);
+  };
+
+  const searchValidator = (e: ChangeEvent<HTMLInputElement>) => {
+    e.currentTarget.value.length < 1
+      ? e.currentTarget.classList.add("search__invalid")
+      : e.currentTarget.classList.remove("search__invalid");
+
+    setSearchedWord(e.currentTarget.value);
   };
 
   return (
@@ -37,10 +45,12 @@ const Search = () => {
       <input
         type="text"
         id="search"
-        onChange={(e) => setSearchedWord(e.currentTarget.value)}
+        onChange={searchValidator}
         className={fontFamilyCondition(fontFamily)}
         value={searchedWord}
+        placeholder="Search for any word…"
       />
+      <span>Whoops, can’t be empty…</span>
       <button type="submit">
         <Image src={searchIcon} alt="search" />
       </button>

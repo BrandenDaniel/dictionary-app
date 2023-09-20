@@ -10,9 +10,31 @@
     color: var(--dark-grey);
     background: var(--off-white);
     border-radius: 16px;
+    font-size: 16px;
     height: 48px;
     padding: 0 0 0 16px;
     font-weight: 700;
+
+    + span {
+      display: none;
+    }
+  }
+
+  &__invalid {
+    outline: 1px solid var(--blood-orange);
+
+    &:focus,
+    &:focus-within {
+      outline: 1px solid var(--blood-orange);
+    }
+
+    + span {
+      display: block !important;
+      position: absolute;
+      color: var(--blood-orange) !important;
+      bottom: -25px;
+      font-size: 13px;
+    }
   }
 
   button {
