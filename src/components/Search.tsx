@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import searchIcon from "../assets/icons/icon-search.svg";
+import closeIcon from "../assets/icons/icon-close.svg";
 import { inter, lora, inconsolata } from "../app/fonts";
 import { useFontFamilyContext } from "@/contexts/font-family-context";
-import { FormEvent, useEffect, ChangeEvent } from "react";
+import { FormEvent, useEffect, ChangeEvent, MouseEvent } from "react";
 import { useWordContentContext } from "@/contexts/word-content-context";
 
 export function fontFamilyCondition(fontFamily: string) {
@@ -40,6 +41,10 @@ const Search = () => {
     setSearchedWord(e.currentTarget.value);
   };
 
+  const clearSearch = (e: MouseEvent<HTMLButtonElement>) => {
+    searchedWord.length > 0 && setSearchedWord("");
+  };
+
   return (
     <form className="search" onSubmit={handleSearch}>
       <input
@@ -51,8 +56,11 @@ const Search = () => {
         placeholder="Search for any word…"
       />
       <span>Whoops, can’t be empty…</span>
-      <button type="submit">
-        <Image src={searchIcon} alt="search" />
+      <button type="button" onClick={clearSearch}>
+        <Image
+          src={searchedWord.length > 0 ? closeIcon : searchIcon}
+          alt="search"
+        />
       </button>
     </form>
   );
