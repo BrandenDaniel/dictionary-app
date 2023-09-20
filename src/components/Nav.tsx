@@ -17,7 +17,7 @@ const Nav = () => {
 
   const [theme, setTheme] = useState("");
 
-  let DropdownButtonRef = useRef<any>();
+  let dropdownRef = useRef<any>();
 
   useEffect(() => {
     // Check to see if Media-Queries are supported
@@ -32,11 +32,17 @@ const Nav = () => {
       }
     }
 
-    document.addEventListener("mousedown", (e) => {
-      if (!DropdownButtonRef.current.contains(e.target)) {
+    let outsideClickhandler = (e: any) => {
+      if (!dropdownRef.current.contains(e.target)) {
         setIsFontFamilyDropdownActive(false);
       }
-    });
+    };
+
+    document.addEventListener("mousedown", outsideClickhandler);
+
+    return () => {
+      document.removeEventListener("mousedown", outsideClickhandler);
+    };
   }, []);
 
   const handleFontFamilySelector = (e: MouseEvent<HTMLButtonElement>) => {
@@ -59,9 +65,8 @@ const Nav = () => {
       <Image src={Logo} alt="Logo" className="nav__logo" />
 
       <div>
-        <div className="nav__font-dropdown">
+        <div className="nav__font-dropdown" ref={dropdownRef}>
           <button
-            ref={DropdownButtonRef}
             onClick={(e) => {
               e.preventDefault();
               setIsFontFamilyDropdownActive(!isFontFamilyDropdownActive);
