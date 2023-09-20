@@ -27,8 +27,6 @@ const WordContent = () => {
     window.scrollTo({ top: 0 });
   };
 
-  console.log(wordContent);
-
   if (wordContent.title) {
     return <NoDefinition />;
   } else {
