@@ -43,6 +43,7 @@ const Search = () => {
 
   const clearSearch = (e: MouseEvent<HTMLButtonElement>) => {
     searchedWord.length > 0 && setSearchedWord("");
+    document.getElementById("search")!.focus();
   };
 
   return (
