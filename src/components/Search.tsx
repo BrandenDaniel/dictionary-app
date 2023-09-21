@@ -31,6 +31,7 @@ const Search = () => {
     e.preventDefault();
     setSearchedWord(searchedWord);
     searchedWord.length > 0 && apiCall(searchedWord);
+    document.getElementById("search")?.blur();
   };
 
   const searchValidator = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +44,7 @@ const Search = () => {
 
   const clearSearch = (e: MouseEvent<HTMLButtonElement>) => {
     searchedWord.length > 0 && setSearchedWord("");
-    document.getElementById("search")!.focus();
+    document.getElementById("search")?.focus();
   };
 
   return (

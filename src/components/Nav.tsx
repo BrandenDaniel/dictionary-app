@@ -120,14 +120,17 @@ const Nav = () => {
         </div>
         <div className="nav__theme-toggler">
           <input
+            id="theme"
             type="checkbox"
             onChange={handleThemeToggle}
             checked={theme === "dark" ? true : false}
           />
-          <Image
-            src={theme === "light" ? MoonLight : MoonDark}
-            alt="theme toggler"
-          />
+          <label htmlFor="theme">
+            <Image
+              src={theme === "light" ? MoonLight : MoonDark}
+              alt="theme toggler"
+            />
+          </label>
         </div>
       </div>
     </nav>
